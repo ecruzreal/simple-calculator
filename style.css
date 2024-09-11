@@ -5,7 +5,7 @@ body{
     align-items: center;
 }
 
-.inner-container{
+#calculator-body{
     display: flex;
     height: 500px;
     width: 350px;
@@ -19,4 +19,13 @@ body{
     align-items: center;
     height: 520px;
     width: 370px;
+}
+
+#display{
+    height: 100px;
+    width: 354px;
+    border: solid 1px black;
+    border-radius: 10px;
+    margin: 10px;
+    margin-top: 16px;
 }
