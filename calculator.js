@@ -94,6 +94,9 @@ function handleInput(event){
     let value = event.target.textContent
     let display_num = display.innerHTML
 
+    if (display_num.length > 13){
+        return
+    }
     if (nums.includes(value) && (display_num === '0') && expression_state.operator === ''
          || (display_num === '') && nums.includes(value)){
         display.textContent = value
