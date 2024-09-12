@@ -26,6 +26,7 @@ body{
     align-items: center;
     height: 520px;
     width: 370px;
+    margin-top: 85px;
 }
 
 .inner-container{

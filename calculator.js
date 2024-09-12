@@ -55,22 +55,31 @@ const nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 const operators = ['+', '-', '/', '×']
 let second_num = false;
 
-const expression_state = {num1: '', operator: '', num2: ''}
+const expression_state = {num1: '', operator: '', num2: '', result: ''}
 
 function handleInput(event){
+    if (display.textContent === 'no can do'){
+        display.innerHTML = ''
+    }
     let value = event.target.textContent
     let display_num = display.innerHTML
 
     if (nums.includes(value) && (display_num === '0') || (display_num === '') && nums.includes(value)){
         display.textContent = value
     } else if (nums.includes(value) && expression_state.operator === ''){
-        display.textContent += value
+        if (expression_state.result !== ''){
+            display.textContent = value
+            expression_state.result = ''
+        } else {
+            display.textContent += value
+        }
     } else if (nums.includes(value)){
         if (second_num === true){
             display.innerHTML = ''
             second_num = false
         }
         display.textContent += value
+        expression_state.num2 = display.textContent
     } else if (operators.includes(value)){
         if (expression_state.num1 !== '' && expression_state.operator === ''){
             expression_state.operator = value
@@ -81,21 +90,76 @@ function handleInput(event){
             expression_state.operator = value
             second_num = true
             console.log(expression_state)
-        } else if (expression_state.num1 !== '' && expression_state.operator !== ''
-            && expression_state.num2 !== ''){
+        } else if (expression_state.num1 !== '' && expression_state.operator !== '' &&
+                    expression_state.num2 !== ''){
                 console.log(expression_state)
-                evaluateExpression(expression_state)
+                result = evaluateExpression(expression_state)
                 second_num = true
-                expression_state.num1 = ''
-                expression_state.operator = ''
                 expression_state.num2 = ''
+                expression_state.operator = value
+                
+                if (result !== ''){
+                    display.textContent = result
+                    expression_state.num1 = result
+                } else {
+                    expression_state.num1 = ''
+                }
          }
+    } else if (value === '='){
+        if (expression_state.num1 !== '' && expression_state.num2 !== ''
+         && expression_state.operator !== ''){
+            result = evaluateExpression(expression_state)
+            if (result !== ''){
+                display.textContent = result
+                expression_state.result = result 
+            }
+            expression_state.num1 = ''
+            expression_state.num2 = ''
+            expression_state.operator = ''
+         }
+    } else if (value === '.'){
+        if (!(display.textContent.includes('.'))){
+            display.textContent += value
+        }
     }
+
 
 }
 
-function evaluateExpression(expression){
+function doAdd(expression){
+    return Number(expression.num1) + Number(expression.num2)
+}
 
+function doSub(expression){
+    return Number(expression.num1) - Number(expression.num2)
+}
+
+function doDiv(expression){
+    if (expression.num2 === '0'){
+        display.textContent =  'no can do'
+        return ''
+    }
+    return Number(expression.num1) / Number(expression.num2)
+}
+
+function doMul(expression){
+    return Number(expression.num1) * Number(expression.num2)
+}
+
+function evaluateExpression(expression){
+    const oper = expression.operator
+    let result
+    if (oper === '+'){
+        result = doAdd(expression)
+    } else if (oper === '-'){
+        result = doSub(expression)
+    } else if (oper === '/'){
+        result = doDiv(expression)
+    } else {
+        result = doMul(expression)
+    }
+
+    return result
 }
 
 buttons.forEach(button =>{
