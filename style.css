@@ -17,6 +17,7 @@ body{
     border: solid 2px black;
     border-radius: 10px;
     align-items: center;
+    background-color: black;
 }
 
 .container{
@@ -35,7 +36,7 @@ body{
     width: 332px;
     justify-content: center;
     align-items: center;
-    outline: solid 1px black;
+    gap: 5px;
 }
 
 #display{
@@ -51,10 +52,12 @@ body{
     margin-top: 16px;
     margin-bottom: 32px;
     padding: 12px;
+    background-color: white;
 }
 
 .cell{
     border: solid 1px black;
+    border-radius: 10px;
     flex-grow: 1;
     cursor: pointer;
     font-size: 40px;
