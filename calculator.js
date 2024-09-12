@@ -11,36 +11,57 @@ function buildGrid(){
 
         if (i === 4){
             cell.textContent = '+';
+            cell.style.backgroundColor = 'pink'
+            cell.classList.add('op')
         } else if (i === 1){
             cell.textContent = '1';
+            cell.classList.add('num')
         } else if (i === 2){
             cell.textContent = '2';
+            cell.classList.add('num')
         } else if (i === 3){
             cell.textContent = '3';
+            cell.classList.add('num')
         } else if (i === 5){
             cell.textContent = '4';
+            cell.classList.add('num')
         } else if (i === 6){
             cell.textContent = '5';
+            cell.classList.add('num')
         } else if (i === 7){
             cell.textContent = '6';
+            cell.classList.add('num')
         } else if (i === 8){
             cell.textContent = '-';
+            cell.style.backgroundColor = 'pink'
+            cell.classList.add('op')
         } else if (i === 9){
             cell.textContent = '7';
+            cell.classList.add('num')
         } else if (i === 10){
             cell.textContent = '8';
+            cell.classList.add('num')
         } else if (i === 11){
             cell.textContent = '9';
+            cell.classList.add('num')
         } else if (i === 12){
             cell.textContent = '×';
+            cell.style.backgroundColor = 'pink'
+            cell.classList.add('op')
         } else if (i === 13){
             cell.textContent = '0';
+            cell.classList.add('num')
         } else if (i === 14){
             cell.textContent = '.';
+            cell.classList.add('num')
         } else if (i === 15){
             cell.textContent = '=';
+            cell.style.backgroundColor = 'pink'
+            cell.classList.add('op')
         } else if (i === 16){
             cell.textContent = '/';
+            cell.style.backgroundColor = 'pink'
+            cell.classList.add('op')
         } 
         
         inner_container.appendChild(cell)
@@ -73,7 +94,8 @@ function handleInput(event){
     let value = event.target.textContent
     let display_num = display.innerHTML
 
-    if (nums.includes(value) && (display_num === '0') || (display_num === '') && nums.includes(value)){
+    if (nums.includes(value) && (display_num === '0') && expression_state.operator === ''
+         || (display_num === '') && nums.includes(value)){
         display.textContent = value
     } else if (nums.includes(value) && expression_state.operator === ''){
         if (expression_state.result !== ''){

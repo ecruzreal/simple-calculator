@@ -24,10 +24,11 @@ body{
     cursor: pointer;
     transition: transform 0.1s ease, box-shadow 0.1s ease;
     box-shadow: 0 2px #999;
+    background-color: pink;
 }
 
 #clear:hover{
-    background-color: lightblue;
+    background-color: lightcoral;
 }
 
 #clear:active{
@@ -44,6 +45,7 @@ body{
     border-radius: 10px;
     align-items: center;
     background-color: black;
+    box-shadow: 0 0 30px #999;
 }
 
 .container{
@@ -82,6 +84,10 @@ body{
     background-color: white;
 }
 
+.op:hover{
+    background-color: lightcoral;
+}
+
 .cell{
     border: solid 1px black;
     border-radius: 10px;
@@ -94,7 +100,7 @@ body{
     box-shadow: 0 2px #999;
 }
 
-.cell:hover{
+.num:hover{
     background-color: lightblue;
 }
 
