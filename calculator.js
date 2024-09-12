@@ -51,11 +51,20 @@ buildGrid()
 
 const display = document.querySelector('#display')
 const buttons = document.querySelectorAll('.cell')
+const clear = document.querySelector('#clear')
 const nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 const operators = ['+', '-', '/', '×']
 let second_num = false;
 
 const expression_state = {num1: '', operator: '', num2: '', result: ''}
+
+clear.addEventListener('click', () => {
+    display.innerHTML = '';
+    expression_state.num1 = '';
+    expression_state.num2 = '';
+    expression_state.operator = '';
+    expression_state.result = '';
+})
 
 function handleInput(event){
     if (display.textContent === 'no can do'){
